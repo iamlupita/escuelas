@@ -1,10 +1,19 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
 <meta charset="utf-8" />
 <head>
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-
- 
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
    <div id="map" style="width: 80%;height: 600px;"></div>
@@ -16,21 +25,100 @@
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18
     }).addTo(map);
-    var myMarker = L.marker(20.656535, -823.325096);
+
+    var point = [20.656535, -823.325096];
+    var myMarker = L.marker(point);
     myMarker.addTo(map);
     myMarker.bindPopup(
-        primaria[0],
+        '<b>CUCEI</b>',
         {minWidth : 256}
-    )
+    );
+    '{% for primaria in primarias %}'
+    var lat=Number('{{primaria[2]}}', 10);
+    console.log(lat);
+    var long=Number('{{primaria[3]}}', 10);
+    console.log(long);
+    var point = [lat,long];
+    var myMarker = L.marker(point);
+    myMarker.addTo(map);
+    myMarker.bindPopup(
+        '<p><b>{{primaria[0]}}</b></p><p>Número de Primarias {{primaria[1]}}</p>',
+        {minWidth : 256}
+    );
+    '{% endfor %}'
+
+    
     </script>
-    {% for primaria in primarias %}
-        <p id="primaria">{{primaria.0}}</p>
-    {% endfor %}
-    {% for secundaria in secundarias %}
-    <p id="secundaria">{{secundaria.0}}</p>
-    {% endfor %}
-    {% for prepa in preparatorias %}
-        <p id="prepa">{{prepa.0}}</p>
-    {% endfor %}
+    <div>
+        <table>
+            <caption>Primarias</caption>
+            <thead>
+                <tr>
+                    <td>Municipio</td>
+                    <td>Cantidad</td>
+                    <td>Latitud</td>
+                    <td>Longitud</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for primaria in primarias %}
+                <tr>
+                    <td>{{primaria.0}}</td>                    
+                    <td>{{primaria.1}}</td>                    
+                    <td>{{primaria.2}}</td>                    
+                    <td>{{primaria.3}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div>
+        <table>
+            <caption>Secundarias</caption>
+            <thead>
+                <tr>
+                    <td>Municipio</td>
+                    <td>Cantidad</td>
+                    <td>Latitud</td>
+                    <td>Longitud</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for secundaria in secundarias %}
+                <tr>
+                    <td>{{secundaria.0}}</td>                    
+                    <td>{{secundaria.1}}</td>                    
+                    <td>{{secundaria.2}}</td>                    
+                    <td>{{secundaria.3}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div>
+        <table>
+            <caption>Preparatorias</caption>
+            <thead>
+                <tr>
+                    <td>Municipio</td>
+                    <td>Cantidad</td>
+                    <td>Latitud</td>
+                    <td>Longitud</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for preparatoria in preparatorias %}
+                <tr>
+                    <td>{{preparatoria.0}}</td>                    
+                    <td>{{preparatoria.1}}</td>                    
+                    <td>{{preparatoria.2}}</td>                    
+                    <td>{{preparatoria.3}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body> 
 </html>
