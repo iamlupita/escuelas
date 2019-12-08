@@ -14,14 +14,14 @@ mysql = MySQL(app)
 
 @app.route('/')
 def verMapa():
-    matrizPrim = [["Guadalajara",0,20.6720375,-823.3383962],
-            ["Zapopan",0,20.7032055,-823.4261243],
-            ["SAN PEDRO TLAQUEPAQUE",0,20.5925775,-823.3388803],
-            ["Tonalá",0,20.6185208,-823.2227359],
-            ["Tlajomulco de Zúñiga",0,20.4737273,-823.4469713],
-            ["El Salto",0,20.5391001,-823.2403775],
-            ["Ixtlahuacán de los Membrillos",0,20.4030274,-823.2050488],
-            ["Juanacatlán",0,20.485749,-823.1507254]]
+    matrizPrim = [["Guadalajara",0,20.6720375,-103.3383962],
+            ["Zapopan",0,20.7032055,-103.4261243],
+            ["SAN PEDRO TLAQUEPAQUE",0,20.5925775,-103.3388803],
+            ["Tonalá",0,20.6185208,-103.2227359],
+            ["Tlajomulco de Zúñiga",0,20.4737273,-103.4469713],
+            ["El Salto",0,20.5391001,-103.2403775],
+            ["Ixtlahuacán de los Membrillos",0,20.348165,-103.195463],
+            ["Juanacatlán",0,20.507090,-103.170622]]
     matrizSec = [["Guadalajara",0,20.6720,-103.3383],
             ["Zapopan",0,20.7032,-103.4261],
             ["SAN PEDRO TLAQUEPAQUE",0,20.5925,-103.3388],

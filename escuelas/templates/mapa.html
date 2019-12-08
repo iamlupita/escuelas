@@ -19,20 +19,13 @@
    <div id="map" style="width: 80%;height: 600px;"></div>
    <script>
     var map = L.map('map').
-    setView([20.656535, -823.325096], 
+    setView([20.656535, -103.325162], 
            11);
 
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18
     }).addTo(map);
 
-    var point = [20.656535, -823.325096];
-    var myMarker = L.marker(point);
-    myMarker.addTo(map);
-    myMarker.bindPopup(
-        '<b>CUCEI</b>',
-        {minWidth : 256}
-    );
     '{% for primaria in primarias %}'
     var lat=Number('{{primaria[2]}}', 10);
     console.log(lat);
@@ -46,8 +39,6 @@
         {minWidth : 256}
     );
     '{% endfor %}'
-
-    
     </script>
     <div>
         <table>
