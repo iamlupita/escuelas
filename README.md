@@ -7,5 +7,5 @@ Visualización de escuelas en la ZMG por municipio y escolaridad.
 3. Ingresar en un navegador a la dirección 'http://127.0.0.1:5000/'.
 
 # Autores
-- Haro Federico Orozco Mercado
-- Maria Guadalupe Ayala Bernal
+- Ayala Bernal Maria Guadalupe
+- Orozco Mercado Haro Federico
