@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<head>
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+   <br>
+    <div>
+        <table>
+            <caption>Secundarias</caption>
+            <thead>
+                <tr>
+                    <td>Clave</td>
+                    <td>Status</td>
+                    <td>Nombre</td>
+                    <td>Domicilio</td>
+                    <td>Municipio</td>
+                    <td>Localidad</td>
+                    <td>Colonia</td>
+                    <td>Codigo postal</td>
+                    <td>Telefono</td>
+                    <td>Turno</td>
+                    <td>Nivel</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for secundaria in secund %}
+                <tr>
+                    <td>{{secundaria.1}}</td>
+                    <td>{{secundaria.2}}</td>
+                    <td>{{secundaria.3}}</td>
+                    <td>{{secundaria.4}}</td>
+                    <td>{{secundaria.7}}</td>
+                    <td>{{secundaria.8}}</td>
+                    <td>{{secundaria.9}}</td>
+                    <td>{{secundaria.10}}</td>
+                    <td>{{secundaria.11}}</td>
+                    <td>{{secundaria.12}}</td>
+                    <td>{{secundaria.16}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+</body>
+</html>

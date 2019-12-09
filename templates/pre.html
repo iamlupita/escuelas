@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<head>
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+   <br>
+    <div>
+        <table>
+            <caption>Preparatorias</caption>
+            <thead>
+                <tr>
+                    <td>Clave</td>
+                    <td>Status</td>
+                    <td>Nombre</td>
+                    <td>Domicilio</td>
+                    <td>Municipio</td>
+                    <td>Localidad</td>
+                    <td>Colonia</td>
+                    <td>Codigo Postal</td>
+                    <td>Telefono</td>
+                    <td>Turno</td>
+                    <td>Servicio educativo</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for preparatoria in prepara %}
+                <tr>
+                    <td>{{preparatoria.1}}</td>
+                    <td>{{preparatoria.2}}</td>
+                    <td>{{preparatoria.3}}</td>
+                    <td>{{preparatoria.4}}</td>
+                    <td>{{preparatoria.5}}</td>
+                    <td>{{preparatoria.6}}</td>
+                    <td>{{preparatoria.7}}</td>
+                    <td>{{preparatoria.8}}</td>
+                    <td>{{preparatoria.9}}</td>
+                    <td>{{preparatoria.10}}</td>
+                    <td>{{preparatoria.14}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+</body>
+</html>

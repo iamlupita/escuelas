@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<head>
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+   <br>
+    <div>
+        <table>
+            <caption>Primarias</caption>
+            <thead>
+                <tr>
+                    <td>Clave</td>
+                    <td>Status</td>
+                    <td>Nombre</td>
+                    <td>Domicilio</td>
+                    <td>Municipio</td>
+                    <td>Localidad</td>
+                    <td>Colonia</td>
+                    <td>Codigo Postal</td>
+                    <td>Telefono</td>
+                    <td>Turno</td>
+                    <td>Servicio educativo</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for primaria in primar %}
+                <tr>
+                    <td>{{primaria.1}}</td>
+                    <td>{{primaria.2}}</td>
+                    <td>{{primaria.3}}</td>
+                    <td>{{primaria.4}}</td>
+                    <td>{{primaria.7}}</td>
+                    <td>{{primaria.8}}</td>
+                    <td>{{primaria.9}}</td>
+                    <td>{{primaria.10}}</td>
+                    <td>{{primaria.11}}</td>
+                    <td>{{primaria.12}}</td>
+                    <td>{{primaria.16}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+</body>
+</html>
