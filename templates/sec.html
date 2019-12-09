@@ -2,20 +2,46 @@
 <html>
 <meta charset="utf-8" />
 <head>
-    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
     <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
+        table {
+            border: 1px solid #000;
         }
         th, td {
-            padding: 5px;
             text-align: left;
+            vertical-align: top;
+            border: 1px solid #000;
+            border-collapse: collapse;
+            padding: 0.3em;
+            caption-side: bottom;
+        }
+        caption {
+            padding: 0.3em;
+            color: #fff;
+            background: #000;
+        }
+        th {
+            background: #eee;
+        }
+        .regresar{
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            text-decoration: none;
+            padding: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 2px solid #000;
+        }
+        .regresar:hover {
+            background-color: #000; 
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
+    <div style="width: 150px;height: 50px;">
+        <form action="/"><input type="submit" value="Regresar" class="regresar"></form>
+    </div>
    <br>
     <div>
         <table>

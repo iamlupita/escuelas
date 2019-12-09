@@ -3,20 +3,69 @@
 <meta charset="utf-8" />
 <head>
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <title>Escuelas</title>
     <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
+        table {
+            border: 1px solid #000;
         }
         th, td {
-            padding: 5px;
             text-align: left;
+            vertical-align: top;
+            border: 1px solid #000;
+            border-collapse: collapse;
+            padding: 0.3em;
+            caption-side: bottom;
+        }
+        caption {
+            padding: 0.3em;
+            color: #fff;
+            background: #000;
+        }
+        th {
+            background: #eee;
+        }
+        .chart{
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            text-decoration: none;
+            padding: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 2px solid #000;
+        }
+        .chart:hover {
+            background-color: #000; 
+            color: #ffffff;
+        }
+        .botonEscuela{
+            border: none;
+            background: none;
+            color: #ffffff;
+        }
+        .botonEscuela:hover{
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            border: none;
+            background: none;
+            color: #000;
+        }
+        .boton{
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            background-color: #000; 
+            color: #ffffff;
+        }
+        .boton:hover{ 
+            color: #000;
+            background-color: #ffffff;            
         }
     </style>
 </head>
 <body>
-   <div id="map" style="width:50%;height: 600px;"></div>
+   <div id="map" style="width:50%;height:600px;position:absolute;top: 20px; left:50"></div>
    <script>
     var map = L.map('map').
     setView([20.577639, -103.315673],
@@ -40,17 +89,50 @@
     );
     '{% endfor %}'
     </script>
-    <br><br>
-    <div id="escuelas" style="position:absolute; top:0; right:10px;">
-        <table class="fixed">
+    <div class='container' style="position:absolute;top: 50px; right:400px;">
+            <a href=# id=pie>
+                <button class='chart' style="width: 150px; height:50px;">
+                    Gráfica de Pastel
+                </button>
+            </a>
+    </div>
+    <div class='container' style="position:absolute;top: 50px; right:200px;">
+            <a href=# id=histograma>
+                <button class='chart' style="width: 150px; height:50px;">
+                    Histograma
+                </button>
+            </a>
+    </div>
+    <script type=text/javascript>
+        $(function() {
+            $('a#pie').bind('click', function() {
+                $.getJSON('/pie',
+                    function(data) {
+                //do nothing
+                });
+                return false;
+            });
+        });
+        $(function() {
+            $('a#histograma').bind('click', function() {
+                $.getJSON('/histograma',
+                    function(data) {
+                //do nothing
+                });
+                return false;
+            });
+        });
+    </script>
+    <div id="escuelas" style="position:absolute; top:150px; right:30px;">
+        <table>
             <caption>Escuelas</caption>
             <thead>
                 <tr>
-                    <td width="150px">Municipio</td>
-                    <td width="100px">Cantidad de primarias</td>
-                    <td width="100px">Cantidad de secundarias</td>
-                    <td width="100px">Cantidad de preparatorias</td>
-                    <td width="100px">Total de escuelas</td>
+                    <td style="width:150px;">Municipio</td>
+                    <td style="width:100px;">Cantidad de primarias</td>
+                    <td style="width:100px;">Cantidad de secundarias</td>
+                    <td style="width:100px;">Cantidad de preparatorias</td>
+                    <td style="width:100px;">Total de escuelas</td>
                     <!--
                     <td>Latitud</td>
                     <td>Longitud</td>
@@ -73,9 +155,10 @@
                 {% endfor %}
                 <tr>
                     <td></td>
-                    <td><form action="/primarias"><input type="submit" value="Primarias"></form></td>
-                    <td><form action="/secundarias"><input type="submit" value="Secundarias"></form></td>
-                    <td><form action="/preparatorias"><input type="submit" value="Preparatorias"></form></td>
+                    <td class="boton"><form action="/primarias"><input type="submit" value="Primarias" class="botonEscuela"></form></td>
+                    <td class="boton"><form action="/secundarias"><input type="submit" value="Secundarias" class="botonEscuela"></form></td>
+                    <td class="boton"><form action="/preparatorias"><input type="submit" value="Preparatorias" class="botonEscuela"></form></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
