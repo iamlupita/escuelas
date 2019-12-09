@@ -2,9 +2,25 @@
 <html>
 <meta charset="utf-8" />
 <head>
+    <title>Primarias</title>
+    <link rel="icon" href="https://image.flaticon.com/icons/png/512/562/562157.png">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Handlee&display=swap" rel="stylesheet">
     <style>
-        table {
+        body
+        {
+            background-image: url('https://raw.githubusercontent.com/iamlupita/escuelas/master/templates/bg.jpg');
+        }
+        #Titulo
+        {
+            font-family: 'Indie Flower', cursive;
+            font-size: 60px;
+            text-shadow: 2px 0 0 #ffffff, -2px 0 0 #ffffff, 0 2px 0 #ffffff, 0 -2px 0 #ffffff, 1px 1px #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;
+        }
+        table
+        {
             border: 1px solid #000;
+            font-family: 'Handlee', cursive;
         }
         th, td {
             text-align: left;
@@ -33,20 +49,22 @@
             border: 2px solid #000;
         }
         .regresar:hover {
-            background-color: #000; 
+            background-color: #000;
             color: #ffffff;
         }
     </style>
 </head>
 <body>
+     <div style="text-align:center; left:25%;">
+       <h1 id="Titulo">Primarias</h1>
+     </div>
     <div style="width: 150px;height: 50px;">
         <form action="/"><input type="submit" value="Regresar" class="regresar"></form>
     </div>
    <br>
     <div>
-        <table>
-            <caption>Primarias</caption>
-            <thead>
+        <table bgcolor="#ffffff">
+            <thead style="font-weight:bold;">
                 <tr>
                     <td>Clave</td>
                     <td>Status</td>

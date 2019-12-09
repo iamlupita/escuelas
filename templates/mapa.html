@@ -7,16 +7,23 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <title>Escuelas</title>
     <link rel="icon" href="https://image.flaticon.com/icons/png/512/562/562157.png">
-    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Handlee&display=swap" rel="stylesheet">
     <style>
+        body
+        {
+            background-image: url('https://raw.githubusercontent.com/iamlupita/escuelas/master/templates/bg.jpg');
+        }
         #Titulo
         {
-            font-family: Major Mono Display, monospace;
-            font-size: 50px;
+            font-family: 'Indie Flower', cursive;
+            font-size: 60px;
+            text-shadow: 2px 0 0 #ffffff, -2px 0 0 #ffffff, 0 2px 0 #ffffff, 0 -2px 0 #ffffff, 1px 1px #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;
         }
         table
         {
             border: 1px solid #000;
+            font-family: 'Handlee', cursive;
         }
         th, td
         {
@@ -75,9 +82,9 @@
         }
     </style>
 </head>
-<body background="\bg.jpg">
+<body>
    <div style="text-align:center; left:25%;">
-     <h1 id="Titulo">escuelas en la zmg</h1>
+     <h1 id="Titulo">Escuelas en la ZMG</h1>
    </div>
    <div id="map" style="width:50%;height:600px;position:absolute;top: 150px; left:50"></div>
    <script>
@@ -138,9 +145,9 @@
         });
     </script>
     <div id="escuelas" style="position:absolute; top:250px; right:30px;">
-        <table>
+        <table bgcolor="#ffffff">
             <caption>Escuelas</caption>
-            <thead>
+            <thead style="font-weight:bold;">
                 <tr>
                     <td style="width:30px;">Municipio</td>
                     <td style="width:17.5px;">Cantidad de primarias</td>
@@ -156,7 +163,7 @@
             <tbody>
                 {% for municipio in municipios %}
                 <tr>
-                    <td>{{municipio.0}}</td>
+                    <td style="font-style: italic;">{{municipio.0}}</td>
                     <td>{{municipio.1}}</td>
                     <td>{{municipio.2}}</td>
                     <td>{{municipio.3}}</td>
