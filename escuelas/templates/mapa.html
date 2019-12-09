@@ -19,97 +19,59 @@
    <div id="map" style="width: 80%;height: 600px;"></div>
    <script>
     var map = L.map('map').
-    setView([20.656535, -103.325162], 
+    setView([20.656535, -103.325162],
            11);
 
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18
     }).addTo(map);
 
-    '{% for primaria in primarias %}'
-    var lat=Number('{{primaria[2]}}', 10);
+    '{% for municipio in municipios %}'
+    var lat=Number('{{municipio[4]}}', 10);
     console.log(lat);
-    var long=Number('{{primaria[3]}}', 10);
+    var long=Number('{{municipio[5]}}', 10);
     console.log(long);
     var point = [lat,long];
     var myMarker = L.marker(point);
     myMarker.addTo(map);
     myMarker.bindPopup(
-        '<p><b>{{primaria[0]}}</b></p><p>Número de Primarias {{primaria[1]}}</p>',
+        '<p><b>{{municipio[0]}}</b></p><p>Número de Primarias: {{municipio[1]}}</p><p>Número de Secundarias: {{municipio[2]}}</p><p>Número de Preparatorias: {{municipio[3]}}</p>',
         {minWidth : 256}
     );
     '{% endfor %}'
     </script>
+    <br><br>
     <div>
         <table>
-            <caption>Primarias</caption>
+            <caption>Escuelas</caption>
             <thead>
                 <tr>
                     <td>Municipio</td>
-                    <td>Cantidad</td>
+                    <td>Cantidad de primarias</td>
+                    <td>Cantidad de secundarias</td>
+                    <td>Cantidad de preparatorias</td>
+                    <!--
                     <td>Latitud</td>
                     <td>Longitud</td>
+                     -->
                 </tr>
             </thead>
             <tbody>
-                {% for primaria in primarias %}
+                {% for municipio in municipios %}
                 <tr>
-                    <td>{{primaria.0}}</td>                    
-                    <td>{{primaria.1}}</td>                    
-                    <td>{{primaria.2}}</td>                    
-                    <td>{{primaria.3}}</td>
+                    <td>{{municipio.0}}</td>
+                    <td>{{municipio.1}}</td>
+                    <td>{{municipio.2}}</td>
+                    <td>{{municipio.3}}</td>
+                    <!--
+                    <td>{{municipio.4}}</td>
+                    <td>{{municipio.5}}</td>
+                    -->
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
     <br>
-    <div>
-        <table>
-            <caption>Secundarias</caption>
-            <thead>
-                <tr>
-                    <td>Municipio</td>
-                    <td>Cantidad</td>
-                    <td>Latitud</td>
-                    <td>Longitud</td>
-                </tr>
-            </thead>
-            <tbody>
-                {% for secundaria in secundarias %}
-                <tr>
-                    <td>{{secundaria.0}}</td>                    
-                    <td>{{secundaria.1}}</td>                    
-                    <td>{{secundaria.2}}</td>                    
-                    <td>{{secundaria.3}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <br>
-    <div>
-        <table>
-            <caption>Preparatorias</caption>
-            <thead>
-                <tr>
-                    <td>Municipio</td>
-                    <td>Cantidad</td>
-                    <td>Latitud</td>
-                    <td>Longitud</td>
-                </tr>
-            </thead>
-            <tbody>
-                {% for preparatoria in preparatorias %}
-                <tr>
-                    <td>{{preparatoria.0}}</td>                    
-                    <td>{{preparatoria.1}}</td>                    
-                    <td>{{preparatoria.2}}</td>                    
-                    <td>{{preparatoria.3}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</body> 
+</body>
 </html>

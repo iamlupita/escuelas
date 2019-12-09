@@ -14,48 +14,33 @@ mysql = MySQL(app)
 
 @app.route('/')
 def verMapa():
-    matrizPrim = [["Guadalajara",0,20.6720375,-103.3383962],
-            ["Zapopan",0,20.7032055,-103.4261243],
-            ["SAN PEDRO TLAQUEPAQUE",0,20.5925775,-103.3388803],
-            ["Tonalá",0,20.6185208,-103.2227359],
-            ["Tlajomulco de Zúñiga",0,20.4737273,-103.4469713],
-            ["El Salto",0,20.5391001,-103.2403775],
-            ["Ixtlahuacán de los Membrillos",0,20.348165,-103.195463],
-            ["Juanacatlán",0,20.507090,-103.170622]]
-    matrizSec = [["Guadalajara",0,20.6720,-103.3383],
-            ["Zapopan",0,20.7032,-103.4261],
-            ["SAN PEDRO TLAQUEPAQUE",0,20.5925,-103.3388],
-            ["Tonalá",0,20.6185,-103.2227],
-            ["Tlajomulco de Zúñiga",0,20.4737,-103.4469],
-            ["El Salto",0,20.5391,-103.2403],
-            ["Ixtlahuacán de los Membrillos",0,20.4030,-103.2050],
-            ["Juanacatlán",0,20.485,-103.1507]]
-    matrizPrep = [["Guadalajara",0,20.672,-103.3383962],
-            ["Zapopan",0,20.703,-103.4261243],
-            ["SAN PEDRO TLAQUEPAQUE",0,20.592,-103.3388803],
-            ["Tonalá",0,20.618,-103.2227359],
-            ["Tlajomulco de Zúñiga",0,20.473,-103.4469713],
-            ["El Salto",0,20.539,-103.2403775],
-            ["Ixtlahuacán de los Membrillos",0,20.403,-103.2050488],
-            ["Juanacatlán",0,20.48,-103.1507254]]
+    matrizMunic = [["Guadalajara",0,0,0,20.6720375,-103.3383962],
+            ["Zapopan",0,0,0,20.7032055,-103.4261243],
+            ["SAN PEDRO TLAQUEPAQUE",0,0,0,20.5925775,-103.3388803],
+            ["Tonalá",0,0,0,20.6185208,-103.2227359],
+            ["Tlajomulco de Zúñiga",0,0,0,20.4737273,-103.4469713],
+            ["El Salto",0,0,0,20.5391001,-103.2403775],
+            ["Ixtlahuacán de los Membrillos",0,0,0,20.348165,-103.195463],
+            ["Juanacatlán",0,0,0,20.507090,-103.170622]]
     cursor = mysql.connection.cursor()
-    for municipio in matrizPrim:
-        query = 'SELECT COUNT(*) FROM `primaria` WHERE `municipio` = "' + municipio[0] + '"'
-        cursor.execute(query)
+    for municipio in matrizMunic:
+
+        query1 = 'SELECT COUNT(*) FROM `primaria` WHERE `municipio` = "' + municipio[0] + '"'
+        cursor.execute(query1)
         resultsPrimaria = cursor.fetchall()
         municipio[1]=resultsPrimaria[0][0]
-    for municipio in matrizSec:
-        query = 'SELECT COUNT(*) FROM `secundaria` WHERE `municipio` = "' + municipio[0] + '"'
-        cursor.execute(query)
-        resultsSecundaria = cursor.fetchall()
-        municipio[1]=resultsSecundaria[0][0]
-    for municipio in matrizPrep:
-        query = 'SELECT COUNT(*) FROM `preparatoria` WHERE `municipio` = "' + municipio[0] + '"'
-        cursor.execute(query)
+
+        query2 = 'SELECT COUNT(*) FROM `preparatoria` WHERE `municipio` = "' + municipio[0] + '"'
+        cursor.execute(query2)
         resultsPreparatoria = cursor.fetchall()
-        municipio[1]=resultsPreparatoria[0][0]
-    return render_template("mapa.html",primarias=matrizPrim, secundarias=matrizSec, preparatorias=matrizPrep)
+        municipio[2]=resultsPreparatoria[0][0]
+
+        query3 = 'SELECT COUNT(*) FROM `secundaria` WHERE `municipio` = "' + municipio[0] + '"'
+        cursor.execute(query3)
+        resultsSecundaria = cursor.fetchall()
+        municipio[3]=resultsSecundaria[0][0]
+
+    return render_template("mapa.html",municipios=matrizMunic)
 
 if __name__ == "__main__":
     app.run()
-    
