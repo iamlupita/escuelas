@@ -16,7 +16,7 @@ mysql = MySQL(app)
 def verMapa():
     matrizMunic = [["Guadalajara",0,0,0,20.6720375,-103.3383962,0],
             ["Zapopan",0,0,0,20.7032055,-103.4261243,0],
-            ["SAN PEDRO TLAQUEPAQUE",0,0,0,20.5925775,-103.3388803,0],
+            ["San Pedro Tlaquepaque",0,0,0,20.5925775,-103.3388803,0],
             ["Tonalá",0,0,0,20.6185208,-103.2227359,0],
             ["Tlajomulco de Zúñiga",0,0,0,20.4737273,-103.4469713,0],
             ["El Salto",0,0,0,20.5391001,-103.2403775,0],
@@ -43,7 +43,7 @@ def verMapa():
     #Pastel
     import matplotlib.pyplot as plt
     #datos
-    labels = 'Guadalajara', 'Zapopan', 'TLAQUEPAQUE', 'Tonalá', 'Tlajomulco', 'El Salto', 'Ixtlahuacán', 'Juanacatlán'
+    labels = 'Guadalajara', 'Zapopan', 'San Pedro Tlaquepaque', 'Tonalá', 'Tlajomulco de Zúñiga', 'El Salto', 'Ixtlahuacán', 'Juanacatlán'
     colors = ['red','orange','gold','green','blue','purple','lightcoral','aqua']
     sizes = [matrizMunic[0][6],matrizMunic[1][6],matrizMunic[2][6],matrizMunic[3][6],matrizMunic[4][6],matrizMunic[5][6],matrizMunic[6][6],matrizMunic[7][6]]
     patches, texts = plt.pie(sizes, colors=colors)
@@ -52,17 +52,47 @@ def verMapa():
     plt.pie(sizes, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
     plt.axis('equal')
     plt.show()
-    """
     #Histograma
-    from matplotlib.pylab import hist, show
-    hist(sizes, 8, (1,8))
-    show()
-    """
+    import numpy as np
+    label = ['Primaria', 'Secundaria', 'Preparatoria']
+    guad = []
+    zap = []
+    tlaq = []
+    ton = []
+    tlaj = []
+    salt = []
+    ixtl = []
+    juan = []
+    i = 1
+    while i < 4:
+        guad.append(matrizMunic[0][i])
+        zap.append(matrizMunic[1][i])
+        tlaq.append(matrizMunic[2][i])
+        ton.append(matrizMunic[3][i])
+        tlaj.append(matrizMunic[4][i])
+        salt.append(matrizMunic[5][i])
+        ixtl.append(matrizMunic[6][i])
+        juan.append(matrizMunic[7][i])
+        i+=1
+    xpos = xpos = np.arange(len(label))
+    plt.bar(xpos-0.5,guad, label="Guadalajara", width = 0.25)
+    plt.bar(xpos-0.4,zap, label="Zapopan", width = 0.25)
+    plt.bar(xpos-0.3,tlaq, label="San Pedro Tlaquepaque", width = 0.25)
+    plt.bar(xpos-0.2,ton, label="Tonalá", width = 0.25)
+    plt.bar(xpos-0.1,tlaj, label="Tlajomulco de Zuñigá", width = 0.25)
+    plt.bar(xpos,salt, label="El Salto", width = 0.25)
+    plt.bar(xpos+0.1,ixtl, label="Ixtlahuacán de los Membrillos", width = 0.25)
+    plt.bar(xpos+0.2,juan, label="Juanacatlán", width = 0.25)
+    plt.xticks(xpos,label)
+    plt.ylabel("Número escuelas ")
+    plt.title('Histograma Escuelas')
+    plt.legend()
+    plt.show()
     return render_template("mapa.html",municipios=matrizMunic)
 
 @app.route('/primarias')
 def verPri():
-    munic = ["Zapopan","SAN PEDRO TLAQUEPAQUE","Tonalá","Tlajomulco de Zúñiga","El Salto","Ixtlahuacán de los Membrillos","Juanacatlán"]
+    munic = ["Guadalajara","Zapopan","San Pedro Tlaquepaque","Tonalá","Tlajomulco de Zúñiga","El Salto","Ixtlahuacán de los Membrillos","Juanacatlán"]
     prima = []
     cursor = mysql.connection.cursor()
     for municipio in munic:
@@ -75,7 +105,7 @@ def verPri():
 
 @app.route('/secundarias')
 def verSec():
-    munic = ["Zapopan","SAN PEDRO TLAQUEPAQUE","Tonalá","Tlajomulco de Zúñiga","El Salto","Ixtlahuacán de los Membrillos","Juanacatlán"]
+    munic = ["Guadalajara","Zapopan","San Pedro Tlaquepaque","Tonalá","Tlajomulco de Zúñiga","El Salto","Ixtlahuacán de los Membrillos","Juanacatlán"]
     secu = []
     cursor = mysql.connection.cursor()
     for municipio in munic:
@@ -88,7 +118,7 @@ def verSec():
 
 @app.route('/preparatorias')
 def verPre():
-    munic = ["Zapopan","SAN PEDRO TLAQUEPAQUE","Tonalá","Tlajomulco de Zúñiga","El Salto","Ixtlahuacán de los Membrillos","Juanacatlán"]
+    munic = ["Guadalajara","Zapopan","San Pedro Tlaquepaque","Tonalá","Tlajomulco de Zúñiga","El Salto","Ixtlahuacán de los Membrillos","Juanacatlán"]
     prepa = []
     cursor = mysql.connection.cursor()
     for municipio in munic:

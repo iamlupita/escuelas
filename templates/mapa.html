@@ -16,11 +16,11 @@
     </style>
 </head>
 <body>
-   <div id="map" style="width: 80%;height: 600px;"></div>
+   <div id="map" style="width:50%;height: 600px;"></div>
    <script>
     var map = L.map('map').
-    setView([20.656535, -103.325162],
-           11);
+    setView([20.577639, -103.315673],
+           10);
 
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18
@@ -41,16 +41,16 @@
     '{% endfor %}'
     </script>
     <br><br>
-    <div>
-        <table>
+    <div id="escuelas" style="position:absolute; top:0; right:10px;">
+        <table class="fixed">
             <caption>Escuelas</caption>
             <thead>
                 <tr>
-                    <td>Municipio</td>
-                    <td>Cantidad de primarias</td>
-                    <td>Cantidad de secundarias</td>
-                    <td>Cantidad de preparatorias</td>
-                    <td>Total de escuelas</td>
+                    <td width="150px">Municipio</td>
+                    <td width="100px">Cantidad de primarias</td>
+                    <td width="100px">Cantidad de secundarias</td>
+                    <td width="100px">Cantidad de preparatorias</td>
+                    <td width="100px">Total de escuelas</td>
                     <!--
                     <td>Latitud</td>
                     <td>Longitud</td>
