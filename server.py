@@ -14,14 +14,14 @@ mysql = MySQL(app)
 
 @app.route('/')
 def verMapa():
-    matrizMunic = [["Guadalajara",0,0,0,20.6720375,-103.3383962],
-            ["Zapopan",0,0,0,20.7032055,-103.4261243],
-            ["SAN PEDRO TLAQUEPAQUE",0,0,0,20.5925775,-103.3388803],
-            ["Tonalá",0,0,0,20.6185208,-103.2227359],
-            ["Tlajomulco de Zúñiga",0,0,0,20.4737273,-103.4469713],
-            ["El Salto",0,0,0,20.5391001,-103.2403775],
-            ["Ixtlahuacán de los Membrillos",0,0,0,20.348165,-103.195463],
-            ["Juanacatlán",0,0,0,20.507090,-103.170622]]
+    matrizMunic = [["Guadalajara",0,0,0,20.6720375,-103.3383962,0],
+            ["Zapopan",0,0,0,20.7032055,-103.4261243,0],
+            ["SAN PEDRO TLAQUEPAQUE",0,0,0,20.5925775,-103.3388803,0],
+            ["Tonalá",0,0,0,20.6185208,-103.2227359,0],
+            ["Tlajomulco de Zúñiga",0,0,0,20.4737273,-103.4469713,0],
+            ["El Salto",0,0,0,20.5391001,-103.2403775,0],
+            ["Ixtlahuacán de los Membrillos",0,0,0,20.348165,-103.195463,0],
+            ["Juanacatlán",0,0,0,20.507090,-103.170622,0]]
     cursor = mysql.connection.cursor()
     for municipio in matrizMunic:
         query1 = 'SELECT COUNT(*) FROM `primaria` WHERE `municipio` = "' + municipio[0] + '"'
@@ -38,6 +38,26 @@ def verMapa():
         cursor.execute(query3)
         resultsPreparatoria = cursor.fetchall()
         municipio[3]=resultsPreparatoria[0][0]
+
+        municipio[6]=municipio[1]+municipio[2]+municipio[3]
+    #Pastel
+    import matplotlib.pyplot as plt
+    #datos
+    labels = 'Guadalajara', 'Zapopan', 'TLAQUEPAQUE', 'Tonalá', 'Tlajomulco', 'El Salto', 'Ixtlahuacán', 'Juanacatlán'
+    colors = ['red','orange','gold','green','blue','purple','lightcoral','aqua']
+    sizes = [matrizMunic[0][6],matrizMunic[1][6],matrizMunic[2][6],matrizMunic[3][6],matrizMunic[4][6],matrizMunic[5][6],matrizMunic[6][6],matrizMunic[7][6]]
+    patches, texts = plt.pie(sizes, colors=colors)
+    #funciones
+    plt.legend(patches, labels, loc="best")
+    plt.pie(sizes, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.show()
+    """
+    #Histograma
+    from matplotlib.pylab import hist, show
+    hist(sizes, 8, (1,8))
+    show()
+    """
     return render_template("mapa.html",municipios=matrizMunic)
 
 @app.route('/primarias')
